@@ -17,6 +17,8 @@ public class Methods {
 		double distance = 0;
 		// FIXME: Hint use Math methods (e.g. Math.sqrt) to compute the distance
 		
+		distance = Math.sqrt(((x2-x1)*(x2-x1) + ((y2-y1)*(y2-y1))));
+	
 		return distance;
 	}
 
@@ -30,6 +32,15 @@ public class Methods {
 	public static void drawBullsEye(double x, double y, double radius) {
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.filledCircle(x, y, radius);
+		
+		StdDraw.setPenColor(StdDraw.BLUE);
+		StdDraw.filledCircle(x, y, radius * 0.75);
+		
+		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.filledCircle(x, y, radius * 0.5);
+		
+		StdDraw.setPenColor(StdDraw.YELLOW);
+		StdDraw.filledCircle(x, y, radius * 0.25);
 
 		// TODO: Draw the remaining rings of the bull's eye
 		// Blue ring with 3.0/4.0 the radius
@@ -62,9 +73,47 @@ public class Methods {
 	public static String substituteAll(String source, char target, String replacement) {
 		String result = "";
 		// TODO: Finish this method
+		int index=0;
+//		int counter=0;
+		String firstpart = "";
+		String lastpart = "";
+		
+		
+		for (int i=0; i<source.length();i++) {
+			if (i==0) {
+				index = source.indexOf(target);
+				firstpart = source.substring(0,index);
+				lastpart = source.substring(index+1);
+				
+			}
+			else {
+				index = lastpart.indexOf(target);
+				firstpart = lastpart.substring(0,index);
+				lastpart = lastpart.substring(index+1);
+				
+			}
+			//firstpart = source.substring(0,index);
+			//lastpart = source.substring(index+1);
+			
+			result = firstpart + replacement + lastpart;
+			
+		}
+		
+		
+		
+		/*while (source.indexOf(target) <=source.length()) {
+			index = source.indexOf(target);
+			String firstpart = source.substring(0,index);
+			String lastpart = source.substring(index+1);
+			
+			result = firstpart + replacement + lastpart;
+			counter++;
+			
+		}*/
 		
 		return result;
 	}
+
 
 	/**
 	 * Compute the sum of elements in an array
